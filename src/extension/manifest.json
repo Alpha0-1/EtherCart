@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "EtherCart – Decentralized Micro-Commerce",
+  "version": "0.1.0",
+  "description": "Buy and sell digital goods anywhere using Ethereum or Stripe.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["https://*/*", "http://*/*"],
+  "background": {
+    "service_worker": "background/service-worker.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "EtherCart"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*/*", "http://*/*"],
+      "js": ["content/content-script.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "options_page": "options/options.html"
+}
+

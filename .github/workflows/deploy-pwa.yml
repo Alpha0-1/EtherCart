@@ -1,0 +1,21 @@
+name: Deploy PWA
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'src/pwa/**'
+      - 'config/webpack/webpack.pwa.js'
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Build PWA
+        run: node config/build/pwa-build.js
+      - name: Deploy (placeholder)
+        run: echo "Deploy to your hosting provider here (e.g., Vercel, Netlify)"
+

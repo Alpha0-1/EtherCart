@@ -1,0 +1,22 @@
+name: Build Extension
+on:
+  push:
+    paths:
+      - 'src/extension/**'
+      - 'config/webpack/webpack.extension.js'
+jobs:
+  build-extension:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Build extension
+        run: node config/build/extension-build.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ethercart-extension
+          path: dist/extension
+
